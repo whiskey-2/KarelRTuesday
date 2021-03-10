@@ -23,3 +23,5 @@ end
 
 Note that you should create the window before you reference the world. 
 If you need to reference the world before the task block see pg14.rb to see how
+
+and thats why python is better
