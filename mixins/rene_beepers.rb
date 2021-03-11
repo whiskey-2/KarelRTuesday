@@ -45,4 +45,41 @@ module ReneBeepers
 		move
 		pick_beeper
 	end
+
+	def pick_10
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+		pick_beeper
+	end
+
+	def beeper_2_infront
+		beeper_infront
+		beeper_infront
+	end
+
+	def beeper_3_infront
+		beeper_infront
+		beeper_infront
+		beeper_infront
+	end
+
+	def beeper_4_infront
+		beeper_2_infront
+		beeper_2_infront
+	end
+
+	def beeper_5_infront
+		beeper_infront
+		beeper_infront
+		beeper_infront
+		beeper_infront
+		beeper_infront
+	end
 end

@@ -176,4 +176,73 @@ class ReneRobot < UrRobot  #inherting from ur_robot
 		put_beeper
 		turn_right
 	end
+
+	def corridor
+		turn_around
+		move
+		move
+		move
+		turn_right
+		move
+		move
+		move
+		move
+		move
+		pick_10
+		move
+		pick_10
+		turn_right
+		move
+		pick_10
+		turn_around
+		move
+		turn_left
+		move
+		move
+		move
+		move
+		move
+		move
+		turn_left
+		move
+		move
+		move
+		move
+		turn_left
+		move
+		move
+		turn_left
+		move
+		move
+		move
+		turn_left
+		move
+		pick_10
+		turn_around
+		move
+		move
+		move
+		move
+		turn_right
+		move
+		move
+		move
+		move
+		move
+		move
+		turn_left
+		move
+		move
+		move
+		move
+		turn_right
+		move
+		turn_right
+		move
+		turn_around
+		40.times do 
+			put_beeper
+		turn_off
+		end
+	end
 end
