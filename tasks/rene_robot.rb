@@ -142,4 +142,38 @@ class ReneRobot < UrRobot  #inherting from ur_robot
 		one_block_left
 		put_beeper
 	end
+
+	def reorganize
+		no_beeper_every_other
+		turn_left
+		no_beeper_infront
+		no_beeper_infront
+		turn_around
+		move
+		no_beeper_every_other
+		no_beeper_infront
+		turn_around
+		move
+		move
+		put_beeper
+		turn_right
+		beeper_infront
+		beeper_infront
+		turn_around
+		move
+		move
+		beeper_infront
+		beeper_infront
+	end
+
+	def cycle
+		pick_beeper
+		move
+		move
+		move
+		move
+		move
+		put_beeper
+		turn_right
+	end
 end
