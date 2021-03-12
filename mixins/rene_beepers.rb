@@ -25,6 +25,13 @@ module ReneBeepers
 		put_beeper
 	end
 
+	def place_3_beepers_and_move
+		put_beeper
+		put_beeper
+		put_beeper
+		move
+	end
+
 	def beeper_for_7
 		beeper_infront
 		beeper_infront
