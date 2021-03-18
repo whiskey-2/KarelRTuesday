@@ -61,4 +61,15 @@ module ReneTurns
 		turn_right
 		move		
 	end
+
+	def move_8
+		move
+		move
+		move
+		move
+		move
+		move
+		move
+		move
+	end
 end
