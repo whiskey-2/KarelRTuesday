@@ -12,7 +12,11 @@ class Spawner < UrRobot
 
   attr_accessor :street, :avenue
 
-  @counter = 0
+  def initialize (street, avenue, direction, beepers)
+    super(street, avenue, direction, beepers)
+    @counter = 0
+  end
+
 
   def pattern
     80.times do
@@ -37,7 +41,7 @@ class Spawner < UrRobot
     end
   end
 
-  def counter
+  def addition
     80.times do
       unless front_is_clear?
         if facing_east?
@@ -58,6 +62,8 @@ class Spawner < UrRobot
         @counter = @counter + 1
       end
     end
+    puts @counter
+  end
 end
 
 
@@ -67,14 +73,14 @@ def task()
   world.read_world("../worlds/aleatoire.kwld")
 
   karel = Spawner.new(2, 2, Robota::EAST, 1)
-  karel.counter
-  
+  karel.addition
+
 end
 
 
 if __FILE__ == $0
   if $graphical
-     screen = window(12, 80) # (size, speed)
+     screen = window(12, 200) # (size, speed)
      screen.run do
        task
      end
