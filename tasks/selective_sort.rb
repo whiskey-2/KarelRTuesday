@@ -2,7 +2,7 @@ require 'byebug'
 
 arr = []
 
-10.times do 
+100.times do 
 	arr << rand(1..100)
 end
 
@@ -20,7 +20,7 @@ while ii < len - 1
 	j = ii + 1
 	plus_petit = ii
 	while j < (len)
-		if arr[plus_petit] > arr[j]
+		if arr[plus_petit] < arr[j]
 			plus_petit = j
 		end
 		j = j + 1
