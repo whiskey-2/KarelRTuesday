@@ -2,16 +2,16 @@ require 'byebug'
 
 arr = []
 
-99.times do 
+9000.times do 
 	arr << rand(1..100)
 end
 
+debut = Time.now
 
 ii = 0
 j = 1
 tmp = 0
 
-puts arr
 
 puts '----'
 len = arr.length
@@ -29,4 +29,6 @@ while ii < len
 	ii = ii + 1
 end
 
-puts arr
+fin = Time.now
+diff = fin - debut
+puts diff
