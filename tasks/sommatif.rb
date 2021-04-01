@@ -50,39 +50,38 @@ class Boss < UrRobot
     end
   end
 
-  def reorganize(n, d, l) # n = distance for pick all beepers.  d = direction (0 is left, 1 is right).  l is the distance to travel in either direction
+  def reorganize(length, direction, distance) # n = distance for pick all beepers.  d = direction (0 is left, 1 is right).  l is the distance to travel in either direction
     @arr = []
     o = 0
-    n.times do
+    length.times do
       while next_to_a_beeper?
         pick_beeper
         o = o + 1
       end
       @arr << o
-      puts (@arr)
       unless next_to_a_beeper?
         move
         o = 0
       end
     end
-    if d == 0
+    if direction == 0
       turn_left
-      l.times do
+      distance.times do
         move
       end
       turn_left
-      n.times do
+      length.times do
         move
       end
       turn_around
     end
-    if d == 1
+    if direction == 1
       turn_right
-      l.times do 
+      distance.times do 
         move
       end
       turn_right
-      n.times do 
+      length.times do 
         move
       end
       turn_around
