@@ -12,7 +12,7 @@ class Boss < UrRobot
   include SensorPack
 
   def safe_move
-    while front_is_clear?
+    if front_is_clear?
       move
     end
   end
@@ -33,9 +33,9 @@ class Boss < UrRobot
     end
   end
 
-  def baseball(w) # w = la longeur d'un cote
+  def baseball(width) # w = la longeur d'un cote
     4.times do
-      (w / 2).times do
+      (width / 2).times do
         one_block_right
         put_beeper
         one_block_left
@@ -50,7 +50,7 @@ class Boss < UrRobot
     end
   end
 
-  def reorganize(length, direction, distance) # n = distance for pick all beepers.  d = direction (0 is left, 1 is right).  l is the distance to travel in either direction
+  def reorganize(length, direction, distance)
     @arr = []
     o = 0
     length.times do
@@ -86,37 +86,97 @@ class Boss < UrRobot
       end
       turn_around
     end
-    while any_beepers_in_beeper_bag?
-      (@arr).each do |r|
-        if r == 0
-          move
+    (@arr).each do |r|
+      if r == 0
+        move
+      end
+      if r > 0
+        r.times do
+          put_beeper
         end
-        if r > 0
-          r.times do
-            put_beeper
-          end
-          move
-        end
+        move
       end
     end
   end
+
+  def clone(length, direction, distance)
+    @arr = []
+    o = 0
+    move
+    length.times do
+      while next_to_a_beeper?
+        pick_beeper
+        o = o + 1
+      end
+      @arr << o
+      unless next_to_a_beeper?
+        move
+        o = 0
+      end
+    end
+    turn_around
+    ((@arr).reverse).each do |r|
+      if r == 0
+        move
+      end
+      if r > 0
+        r.times do
+          put_beeper
+        end
+        move
+      end
+    end
+    if direction == 0
+      turn_right
+      distance.times do
+        move
+      end
+      turn_right
+      move
+    end
+    if direction == 1
+      turn_left
+      distance.times do 
+        move
+      end
+      turn_left
+      move
+    end
+    (@arr).each do |r|
+      if r == 0
+        move
+      end
+      if r > 0
+        r.times do
+          put_beeper
+        end
+        move
+      end
+    end
+  end
+
 end
 
-f = 15
-s = 200
+@f = 15
+@s = 200
+
 
 def task()
+
+  y = 1
+  x = (@f / 2)
+
   world = Robota::World
   world.read_world("../worlds/shifts.txt")
 
-  karel = Boss.new(1, 3, Robota::NORTH, 0)
-  karel.reorganize(10, 1, 8) # pour ce fichier, grader n = 10
+  karel = Boss.new(1, 3, Robota::NORTH, INFINITY)
+  karel.clone(10, 1, 7)
 end
 
 
 if __FILE__ == $0
   if $graphical
-     screen = window(f, s) # (size, speed)
+     screen = window(@f, @s) # (size, speed)
      screen.run do
        task
      end
